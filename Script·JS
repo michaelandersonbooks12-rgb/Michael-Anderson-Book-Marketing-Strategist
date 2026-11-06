@@ -1,0 +1,11 @@
+document.documentElement.classList.add('js');
+document.documentElement.classList.add('js');
+setTimeout(()=>document.querySelectorAll('.rv').forEach(e=>e.classList.add('in')),2500);
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));setTimeout(()=>document.querySelectorAll('.rv').forEach(el=>el.classList.add('in')),2500);
+document.querySelectorAll('[data-n]').forEach(el=>{const t=+el.dataset.n;let n=0;el.textContent=0;el.textContent=0;const s=Math.max(1,Math.ceil(t/60));const i=setInterval(()=>{n=Math.min(t,n+s);el.textContent=n;if(n>=t)clearInterval(i)},25)});
+document.querySelectorAll('.fm').forEach(f=>f.addEventListener('submit',async e=>{e.preventDefault();const b=f.querySelector('[type=submit]'),o=f.querySelector('.ok');b.disabled=true;
+try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}});if(r.ok){o.textContent=f.dataset.ok;o.hidden=false;f.querySelectorAll('input:not([type=hidden]),select,textarea').forEach(x=>x.value='');b.hidden=true}else throw 0}catch(x){o.textContent='Something went wrong. Please email michaelanderson.books12@gmail.com.';o.hidden=false;b.disabled=false}}));
+const st=document.querySelectorAll('.step');if(st.length){let i=0;const nx=document.getElementById('next'),pv=document.getElementById('prev'),sb=document.getElementById('sub'),pg=document.querySelector('.prog i');
+const show=()=>{st.forEach((s,k)=>s.classList.toggle('on',k===i));pv.style.display=i?'':'none';nx.style.display=i<st.length-1?'':'none';sb.style.display=i===st.length-1?'':'none';pg.style.width=((i+1)/st.length*100)+'%'};
+nx.onclick=()=>{const bad=[...st[i].querySelectorAll('[required]')].find(x=>!x.checkValidity());if(bad){bad.reportValidity();return}i++;show()};pv.onclick=()=>{i--;show()};show()}
